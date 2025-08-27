@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
+context('Exercicio - Testes End-to-end - Fluxo de pedidos', () => {
     /* Como cliente 
         Quero acessar a Loja EBAC 
         Para fazer um pedido de 4 produtos 
@@ -13,45 +13,33 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.visit('/produtos/') 
     });
 
-    it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
+    it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta com produtos diferentes', () => {
+
 
         // Colocando o produto 1
-        cy.get('[class="product-block grid"]').contains('Abominable Hoodie').click()
-        cy.get('.button-variable-item-L').click()
-        cy.get('.button-variable-item-Red').click()
-        cy.get('.single_add_to_cart_button').click()
+        cy.adicionarProduto('Abominable Hoodie', 'L', 'Red')
         cy.get('.woocommerce-message').should('contain', '“Abominable Hoodie” foi adicionado no seu carrinho.')
+        cy.visit('/produtos/')
 
         // Colocando o produto 2
-        cy.visit('/produtos/') // Volta para a lista de produtos
-        cy.get('[class="product-block grid"]').contains('Arcadio Gym Short').click()
-        cy.get('.button-variable-item-36').click()
-        cy.get('.button-variable-item-Black').click()
-        cy.get('.single_add_to_cart_button').click()
-        cy.get('.woocommerce-message').should('contain', '“Arcadio Gym Short” foi adicionado no seu carrinho.')
+        cy.adicionarProduto('Atlas Fitness Tank', 'S', 'Blue')
+        cy.get('.woocommerce-message').should('contain', '“Atlas Fitness Tank” foi adicionado no seu carrinho.')
+        cy.visit('/produtos/')
 
         // Colocando o produto 3
+        cy.adicionarProduto('Arcadio Gym Short', '34', 'Black')
+        cy.get('.woocommerce-message').should('contain', '“Arcadio Gym Short” foi adicionado no seu carrinho.')
         cy.visit('/produtos/')
-        cy.get('[class="product-block grid"]').contains('Ajax Full-Zip Sweatshirt').click()
-        cy.get('.button-variable-item-L').click()
-        cy.get('.button-variable-item-Green').click()
-        cy.get('.single_add_to_cart_button').click()
-        cy.get('.woocommerce-message').should('contain', '“Ajax Full-Zip Sweatshirt” foi adicionado no seu carrinho.')
 
         // Colocando o produto 4
-        cy.visit('/produtos/')
-        cy.get('[class="product-block grid"]').contains('Atlas Fitness Tank').click()
-        cy.get('.button-variable-item-S').click()
-        cy.get(':nth-child(2) > .value > .variable-items-wrapper > .variable-item').click()
-        cy.get('.plus').click()
-        cy.get('.single_add_to_cart_button').click()
-        cy.get('.woocommerce-message').should('contain', '2 × “Atlas Fitness Tank” foram adicionados no seu carrinho.')
+        cy.adicionarProduto('Ariel Roll Sleeve Sweatshirt', 'L', 'Red')
+        cy.get('.woocommerce-message').should('contain', '“Ariel Roll Sleeve Sweatshirt” foi adicionado no seu carrinho.')
 
-        // Checkout
+        // Checkout 
         cy.get('.woocommerce-message > .button').click()
         cy.get('.checkout-button').click()
 
-        // Prencher os dados
+        // Prencher os dados do formulário
         cy.get('#billing_first_name').type('Douglas Antonio')
         cy.get('#billing_last_name').type('Miranda Dias')
         cy.get('#billing_company').type('EBAC TESTE')
@@ -68,7 +56,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
         cy.get('#terms').check()
         cy.get('#place_order').click()
         
-        // Certeza de que tudo funcionou
+        // Validação final de que deu tudo certo
         cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
     });
 })
