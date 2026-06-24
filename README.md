@@ -99,6 +99,12 @@ Use `npx cypress run` quando quiser:
 - base para pipeline;
 - resultado mais próximo de CI.
 
+## Critérios de cobertura recomendados
+
+A evolução mais valiosa para este projeto é escolher poucos fluxos, mas com alto valor de regressão. Em uma loja virtual, um teste E2E deve proteger jornadas que combinam tela, estado, regra e resposta visual. Isso inclui autenticação, seleção de produto, carrinho, mensagens de erro e confirmação de ação.
+
+A cobertura ideal não deve tentar testar tudo pela interface. O papel deste repositório é representar a camada final de confiança: aquilo que precisa ser visto funcionando como usuário final. Regras menores, payloads e validações isoladas tendem a ser mais eficientes em testes de API ou unidade.
+
 ## Estratégia de evolução
 
 Este repositório pode evoluir de uma base simples para uma suíte mais madura com:
@@ -112,12 +118,18 @@ Este repositório pode evoluir de uma base simples para uma suíte mais madura c
 - integração com GitHub Actions;
 - separação entre smoke e regressão.
 
+## Boas práticas para estabilidade
+
+Para manter uma suíte E2E confiável, é importante reduzir dependência de tempo fixo e selecionar elementos por atributos estáveis sempre que possível. Também vale separar setup de dados da jornada principal, para que a falha aponte com mais clareza onde o problema ocorreu.
+
+Em termos de portfólio, esse cuidado comunica uma visão prática: automação boa não é só clicar na tela, é construir uma execução que gere diagnóstico, evidência e confiança para o time.
+
 ## Troubleshooting
 
 | Problema | Possível causa | Ação sugerida |
 | --- | --- | --- |
 | Cypress não encontra elemento | DOM alterado ou seletor frágil | Revisar seletor no DevTools |
-| Teste não abre a aplicação | URL alvo indisponível | Conferir `baseUrl` e acesso à EBAC Shop |
+| Teste não abre a aplicação | URL alvo fora do ar | Conferir `baseUrl` e acesso à EBAC Shop |
 | Falha intermitente | Timing ou carregamento assíncrono | Usar asserts e interceptações adequadas |
 | Dependências não instalam | Node/npm incompatíveis | Atualizar Node.js e rodar `npm install` novamente |
 
