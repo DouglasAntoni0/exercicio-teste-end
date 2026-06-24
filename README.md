@@ -1,51 +1,47 @@
-# Testes End to End - Ebac Shop
-### Exercício para os alunos de Qualidade de software da EBAC 
+# Testes End-to-End - EBAC Shop
 
-Ebac shop: http://lojaebac.ebaconline.art.br/
+![Cypress](https://img.shields.io/badge/Cypress-E2E-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-testes-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![QA](https://img.shields.io/badge/QA-regressao%20web-0A66C2?style=for-the-badge)
 
-## Clonando e executando em sua máquina
+Projeto de automação end-to-end com Cypress para validar fluxos de interface da EBAC Shop, com foco em execução simples, reprodutível e alinhada a cenários de regressão web.
 
-### Pré-requisito:
+## O que este projeto demonstra
 
--Node.js - Você encontra em: https://nodejs.org/en/
+| Competência | Aplicação prática |
+| --- | --- |
+| E2E web | Validação de comportamento no navegador |
+| Cypress | Configuração, execução headless e execução interativa |
+| Regressão funcional | Base para cobrir jornadas críticas de e-commerce |
+| Documentação técnica | Instruções claras para instalação e execução |
 
--Visual Studio Code ou qualquer editor de texto - você encontra em: https://code.visualstudio.com/download
+## Stack
 
--Git: você encontra em: https://git-scm.com/downloads
+- Cypress 13
+- JavaScript
+- Node.js
+- EBAC Shop como aplicação alvo
 
+## Como executar
 
-Via terminal, rode os seguintes comandos:
-```  
-git clone https://github.com/EBAC-QE/teste-e2e-ebac.git
+```bash
+git clone https://github.com/DouglasAntoni0/exercicio-teste-end.git
+cd exercicio-teste-end
+npm install
 ```
-```
-cd teste-e2e-ebac
-```
 
-#### Para instalar as dependencias:
-```
-npm install 
-```
+Executar no terminal:
 
-#### Para executar em moodo Headlesss via console:
-```
+```bash
 npx cypress run
 ```
 
-#### Para executar via Dashboard:
+Abrir o Cypress Runner:
+
+```bash
+npx cypress open
 ```
-npx cypress open 
-```
-Após abrir o dashboard, selecione um dos navegadores (De preferencia Electron) e siga com as execuções. 
 
+## Resultado técnico
 
-### Bibliotecas de apoio:
--Cypress: Framework de automação: https://cypress.io/
-
-### Bom exercício ;) 
-Fábio & José Ernesto
-Qualidade de software
-
-
-
-
+Este repositório mostra domínio da base de automação UI: preparar ambiente, executar testes e documentar o fluxo para que a suíte possa ser mantida e evoluída. É uma peça de fundação para projetos Cypress mais completos deste perfil.
